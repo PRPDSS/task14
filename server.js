@@ -27,8 +27,9 @@ app.post('/login', (req, res) => {
         password);
     if (user) {
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-            expiresIn: '1h'
+            expiresIn: '1000h'
         });
+        console.log(token);
         res.json({ token });
     } else {
         res.status(401).json({ message: 'Invalid credentials' });
